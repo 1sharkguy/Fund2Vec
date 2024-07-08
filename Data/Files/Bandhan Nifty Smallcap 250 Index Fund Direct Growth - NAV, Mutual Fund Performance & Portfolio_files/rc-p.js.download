@@ -1,0 +1,426 @@
+const webRemoteData = {
+    gb: {
+        mtfMarginContent: {
+        usedForMtf: 'Used for MTF',
+        changeInHaircut: 'Uncollected haircut for MTF',
+        mtfUnrealizedLoss: 'Unrealised MTF loss',
+        mtfUnrealizedProfit: 'Unrealized MTF loss recovered',
+        netMtfIntradayPnl: 'MTF Intraday Loss'
+        },
+        stockEquityOnHold: {
+        text: 'Delivery sell balance blocked',
+        popupHeader: 'Why is my sell amount blocked ?',
+        popupText: 'As per regulations, 20% of the demat sell amount will be released tonight & the rest 80% will be released in 30 mins except for BTST & pledge sell.'
+        },
+        toBeCredited: {
+        BLOCK_TEXT_80: {
+            PRIMARY_TEXT: '80% block for delivery sell',
+            SECONDARY_TEXT: 'Available in 30 mins after transaction'
+        },
+        BLOCK_TEXT_20: {
+            PRIMARY_TEXT: '20% block for delivery sell',
+            SECONDARY_TEXT: 'Available by end of the day'
+        },
+        BLOCK_TEXT_MTF: {
+            PRIMARY_TEXT: 'To be received from MTF',
+            SECONDARY_TEXT: 'Available by end of the day'
+        },
+        PLEDGE_BT_ST: {
+            PRIMARY_TEXT: 'Pledge or BTST sell',
+            SECONDARY_TEXT: 'Available by end of the day'
+        },
+        POPOVER_CONTENT: {
+            PRIMARY_TEXT: 'BTST or Buy Today Sell Tomorrow is when you sell any stock you have bought on the previous trading/settlement day.'
+        }
+        }
+    },
+    stocks: {
+        OCCharges: {
+        STOCKS: {
+            CNC: {
+            brokerage: 0.05,
+            brokerageAbs: 20,
+            stt: 0.1,
+            stampDuty: 0.015,
+            exchangeTransactionBse: 0.00375,
+            exchangeTransactionNse: 0.00325,
+            sebiTurnOverCharge: 0.0001,
+            gst: 0.18,
+            ipf: 0.0001
+            },
+            MIS: {
+            brokerage: 0.05,
+            brokerageAbs: 20,
+            stt: 0.025,
+            stampDuty: 0.003,
+            exchangeTransactionBse: 0.00375,
+            exchangeTransactionNse: 0.00325,
+            sebiTurnOverCharge: 0.0001,
+            gst: 0.18,
+            ipf: 0.0001
+            }
+        },
+        FNO: {
+            OPTION: {
+            brokerage: 20.0,
+            stt: 0.0625,
+            stampDuty: 0.003,
+            exchangeTransactionNse: 0.05,
+            exchangeTransactionBse: 0.0375,
+            sebiTurnOverCharge: 0.0001,
+            gst: 0.18,
+            ipf: 0.0005
+            },
+            FUTURE: {
+            brokerage: 20.0,
+            stt: 0.0125,
+            stampDuty: 0.002,
+            exchangeTransactionNse: 0.0019,
+            exchangeTransactionBse: 0,
+            sebiTurnOverCharge: 0.0001,
+            gst: 0.18,
+            ipf: 0.0001
+            }
+        }
+        },
+        cncPercentage: 0.0020,
+        misPercentage: 0.0009,
+        mtfPercentage: 0.002,
+        amoMarketProtection: 0.045,
+        prefferedExchange: 'NSE',
+        cancelAndExitScreenTimeout: 2000,
+        isExchangeToggleDisabled: false,
+        isSquareOffModeDisabled: false,
+        isFnoSquareOffModeDisabled: false,
+        isExpiryDaySquareOffModeDisabled: false,
+        exitAllOrderValidity: 'DAY',
+        multiOrderRequestMaxOrdersLimit: 20,
+        fnoNrmlPositionDropdownStoplossOption: 'GTT_OCO_ORDER',
+        showFnoRiskCompliancePopup: true,
+        shouldBlockOcoWithoutPosition: true,
+        defaultFnoProduct: 'NRML',
+        safeExitMarkupPercentage: 2,
+        safeExitMinLossLimit: 100,
+        showPrevSafeExitValOnLaunch: false,
+        lppCheckHardBlocker: false,
+        cashMaxSingleOrderAmountInRupees: 4000000,
+        allowSocketOrderUpdates: true,
+        isPreOpenAllowed: true,
+        bseFnoOrderFeaturesStatus: {
+        isBseFnoGttEnabled: true,
+        isBseFnoOcoEnabled: true,
+        isBseFnoIcebergEnabled: true,
+        isBseFnoIntradayEnabled: true
+        },
+        stockMarketOrderProtection: {
+        isNseEnabled: false,
+        isBseEnabled: true,
+        nseStoplossPercentage: 4.5,
+        bseStoplossPercentage: 4.5,
+        regularAmoOrderPercentage: 4.5
+        },
+        defaultFnoValues: {
+        BANKNIFTY: {
+            lotSize: 15,
+            freezeQty: 900,
+            updatedLotsizeDate: null,
+            updatedFreezeQtyDate: null,
+            updatedLotSize: null,
+            updatedFreezeQty: null
+        },
+        NIFTY: {
+            lotSize: 50,
+            freezeQty: 1800,
+            updatedLotsizeDate: null,
+            updatedFreezeQtyDate: null,
+            updatedLotSize: null,
+            updatedFreezeQty: null
+        },
+        FINNIFTY: {
+            lotSize: 40,
+            freezeQty: 1800,
+            updatedLotsizeDate: null,
+            updatedFreezeQtyDate: null,
+            updatedLotSize: null,
+            updatedFreezeQty: null
+        },
+        1: { // SENSEX
+            lotSize: 10,
+            freezeQty: 1000,
+            updatedLotsizeDate: null,
+            updatedFreezeQtyDate: null,
+            updatedLotSize: null,
+            updatedFreezeQty: null
+        },
+        NIFTYMIDSELECT: { // MIDCPNIFTY
+            lotSize: 75,
+            freezeQty: 4200,
+            updatedLotsizeDate: null,
+            updatedFreezeQtyDate: null,
+            updatedLotSize: null,
+            updatedFreezeQty: null
+        },
+        DEFAULT: {
+            lotSize: 1,
+            freezeQty: 20000,
+            updatedLotsizeDate: null,
+            updatedFreezeQtyDate: null,
+            updatedLotSize: null,
+            updatedFreezeQty: null
+        }
+        },
+        basketOrder: {
+        BANKNIFTY: {
+            isAllowed: true,
+            allowedRangePercentage: 10
+        },
+        NIFTY: {
+            isAllowed: true,
+            allowedRangePercentage: 10
+        },
+        FINNIFTY: {
+            isAllowed: true,
+            allowedRangePercentage: 5
+        },
+        NIFTYMIDSELECT: { // MIDCPNIFTY
+            isAllowed: true,
+            allowedRangePercentage: 3
+        },
+        1: {
+            isAllowed: true,
+            allowedRangePercentage: 3
+        },
+        14: {
+            isAllowed: true,
+            allowedRangePercentage: 3
+        },
+        STOCKS: {
+            isAllowed: true,
+            allowedRangePercentage: 20
+        }
+        },
+        marketOptionBuy: {
+        minIndexOI: -1,
+        minIndexVolume: -1,
+        indexStrikeRange: 0.1,
+        minStockOI: -1,
+        minStockVolume: -1,
+        stockStrikeRange: 0.2
+        },
+        amoDefaultOrderType: 'Limit',
+        gttTriggerPriceBuffers: {
+        BUFFER_LIMIT_FACTOR: 0.0025, // 0.25%
+        BUFFER_LIMIT_VAL: 0.2 // 0.2 rs.
+        },
+        gttFnoTriggerPriceBuffers: {
+        BUFFER_LIMIT_FACTOR: 0.0025, // 0.25%
+        BUFFER_LIMIT_VAL: 0.2 // 0.2 rs.
+        },
+        gttOcoFnoTriggerPriceBuffers: {
+        BUFFER_LIMIT_FACTOR: 0.0025, // 0.25%
+        BUFFER_LIMIT_VAL: 0.25 // 0.25 rs.
+        },
+        pledge: {
+        timings: {
+            start: '07:00:00',
+            close: '19:00:00'
+        },
+        validation: {
+            pledge: 'Apply between 7AM to 7PM on working days',
+            unpledge: 'Apply during market hours'
+        }
+        },
+        ipo: {
+        order: {
+            upiRejectedErrorText: 'UPI ID looks wrong, please check',
+            toUseVpaListApi: true,
+            toUseValidationVpaApi: true
+        }
+        },
+        mtf: {
+        isMtfEnabled: true,
+        reVerify: {
+            reVerifyStartTime: 15,
+            reVerifyEndTime: 19,
+            text: 'Change in quantity. Verify by 07:00 PM today to avoid auto square-off.'
+        },
+        activationPopup: {
+            videoUrl: { English: 'https://www.youtube.com/embed/WSkmKa2dJsI', Hindi: 'https://www.youtube.com/embed/elG5WUDNESA' },
+            content: 'Margin Trading allows you to buy stocks which are partially funded by Groww at an interest rate of 0.05% + GST per day.',
+            tncUrl: 'https://groww.in/terms-and-conditions'
+        }
+        },
+        t2tMessage: 'This stock will be available to sell after delivery',
+        t2tMessageInfo: 'This stock has been listed as a trade-to-trade stock by the exchange. It will be available to sell after demat delivery i.e. 1 trading day after purchase.',
+        t2tMessageHeader: 'Trade-to-trade stock',
+        underLockIn: 'Under lock-in'
+    },
+    usStocks: {
+        promotions: {
+        showICICIBankOffer: false
+        },
+        tcs: {
+        saveTcs: true,
+        showExploreTcsbanner: true
+        }
+    },
+    mf: {
+        nomineeDobComplianceEnabled: false, // if true will ask user to add dob of nominee (if not available) while placing order.
+        nfo: {
+        available: true,
+        exclusive: {
+            blogLink: 'https://groww.in/p/exclusive-funds',
+            funds: [
+            {
+                fundName: 'Motilal Oswal Asset Allocation Passive FOF - Aggressive',
+                pros: [ 'Indian Equity', 'International Equity', 'Debt', 'Gold' ],
+                appLink: 'https://groww.in/nfo/motilal-oswal-asset-allocation-passive-fund-of-fund-aggressive',
+                searchId: 'motilal-oswal-asset-allocation-passive-fund-of-fund-aggressive',
+                closeOn: '05 March 2021'
+            },
+            {
+                fundName: 'Motilal Oswal Asset Allocation Passive FOF - Conservative',
+                pros: [ 'Indian Equity', 'International Equity', 'Debt', 'Gold' ],
+                appLink: 'https://groww.in/nfo/motilal-oswal-asset-allocation-passive-fund-of-fund-conservative',
+                searchId: 'motilal-oswal-asset-allocation-passive-fund-of-fund-conservative',
+                closeOn: '05 March 2021'
+            }
+            ]
+        }
+        },
+        track: {
+        CAMS_URL: 'https://www.camsonline.com/Investors/Statements/Consolidated-Account-Statement'
+        },
+        sip: {
+        editSipFeaturesEnabled: true,
+        sipNavDeductionInfoEnabled: false
+        },
+        stpErrorValidationEnabled: true,
+        isSmartSaveEnabled: true,
+        isNomineeFlowEnabled: true,
+        mfBlockKycPendingOrders: true,
+        mfAllowedKraStatusMap: [ 'MODIFICATION_UNDER_PROCESS', 'MODIFICATION_REGISTERED', 'MODIFICATION_ON_HOLD', 'MODIFICATION_REJECTED', 'NOT_INITIATED', 'REGISTERED', 'VALIDATED' ],
+        mfOrderStatusMap: {
+        INITIATED_WITH_USER_ACTION: {
+            statusText: 'Action pending',
+            iconColorClass: 'contentWarning',
+            icon: 'clock-time-four'
+        },
+        INITIATED_WITH_NO_USER_ACTION: {
+            statusText: 'Initiated',
+            iconColorClass: 'contentAccent',
+            icon: 'clock-time-four'
+        },
+        IN_PROGRESS: {
+            statusText: 'In progress',
+            iconColorClass: 'contentAccent',
+            icon: 'clock-time-four'
+        },
+        FAILED: {
+            statusText: 'Failed',
+            iconColorClass: 'contentNegative',
+            icon: 'alert-circle'
+        },
+        REJECTED: {
+            statusText: 'Rejected',
+            iconColorClass: 'contentNegative',
+            icon: 'alert-circle'
+        },
+        COMPLETED: {
+            statusText: 'Completed',
+            iconColorClass: 'contentAccent',
+            icon: 'check-circle'
+        }
+        }
+    },
+    gold: {
+        isBuyActionBlocked: true,
+        isSellActionBlocked: false,
+        buyBlockedErrorMsg: 'Investment in digital gold has been stopped for now',
+        sellBlockedErrorMsg: '',
+        minWithdrawAmount: 10
+    },
+    growth: {
+        showMuhuratFeature: false,
+        muhuratCards: [
+        {
+            'msg': 'Get ready for Muhurat trading',
+            'subMsg': 'The 1-hour trading window opens on 12 Nov, 6:15 PM. Orders placed now will be executed on 12 Nov, 6:15 PM.',
+            'showTimer': false,
+            'image': 'preDiwali',
+            'openCardTimeISO': 1699610700000,
+            'closeCardTimeISO': 1699706700000
+        },
+        {
+            'msg': ' Muhurat trading: Countdown begins',
+            'subMsg': 'Trading starts in',
+            'showTimer': true,
+            'image': 'preDiwali',
+            'openCardTimeISO': 1699706700000,
+            'closeCardTimeISO': 1699793100000
+        },
+        {
+            'msg': 'Muhurat trading: Now live',
+            'subMsg': 'Make the most of this auspicious hour. Trading closes in',
+            'showTimer': true,
+            'image': 'duringDiwali',
+            'openCardTimeISO': 1699793100000,
+            'closeCardTimeISO': 1699796700000
+        },
+        {
+            'msg': 'Wishing you a delightful Diwali!',
+            'subMsg': 'May the excitement of Muhurat trading hour set the tone for a prosperous evening ahead.',
+            'showTimer': false,
+            'image': 'postDiwali',
+            'openCardTimeISO': 1699796700000,
+            'closeCardTimeISO': 1699812900000
+        }
+        ]
+    },
+    hns: {
+        hnsSearchLoginCheck: false,
+        messageBoardCheck: false
+    },
+    logo: {
+        isLogoFromRemote: true,
+        LOGO_URL_DARK_MODE: 'https://resources.groww.in/web-assets/img/website-logo/groww-logo-dark.svg',
+        LOGO_URL_LIGHT_MODE: 'https://resources.groww.in/web-assets/img/website-logo/groww-logo-light.svg'
+    },
+    externalLinks: {
+        AADHAAR_PAN_LINK_URL: 'https://eportal.incometax.gov.in/iec/foservices/#/pre-login/bl-link-aadhaar',
+        AADHAAR_PAN_BLOG_URL: 'https://www.youtube.com/watch?v=oQ_lqyyu-8Y'
+    },
+    onboarding: {
+        nomineePendingRequestConfig: {
+        header: 'Nominee update',
+        title: 'Request Submitted',
+        message: 'Your nominee declaration request has been submitted. It takes up to 2 working days to get updated by the exchanges and CDSL.',
+        ctaText: 'OKAY',
+        ctaActionUrl: '/'
+        }
+    },
+    nbtOnboarding: {
+        kraVerificationData: {
+        title: 'Contact verification pending',
+        updateBtnLink: 'https://groww.in/user/profile/basic-details',
+        verifyBtnLinks: {
+            cvl: 'https://groww.in/kra/verify/cvl',
+            CVLKRA: 'https://groww.in/kra/verify/cvl',
+            cams: 'https://camskra.com/PanDetailsUpdate.aspx',
+            CAMS: 'https://camskra.com/PanDetailsUpdate.aspx',
+            ndml: 'https://kra.ndml.in/ClientInitiatedKYC-webApp',
+            NDML: 'https://kra.ndml.in/ClientInitiatedKYC-webApp',
+            karvy: 'https://www.karvykra.com/KYC_Validation/Default.aspx',
+            KARVY: 'https://www.karvykra.com/KYC_Validation/Default.aspx',
+            dotex: 'https://www.nsekra.com/',
+            DOTEX: 'https://www.nsekra.com/'
+        },
+        descriptionText: {
+            email: 'Verify your email id below if it is correct. If it is incorrect, update your email id.',
+            mob: 'Verify your mobile number below if it is correct. If it is incorrect, update your mobile number.',
+            both: 'Verify your contact details if the details below are correct. If it is incorrect, update your contact details.'
+        }
+        }
+    }
+};
+  
